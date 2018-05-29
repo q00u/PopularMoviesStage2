@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/poster"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/imageViewPoster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Movie Poster"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/movie01"
+        tools:srcCompat="@drawable/movie01" />
+
+    <com.example.phoen.popularmovies.OutlineTextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:contentDescription="Movie Title"
+        android:text="Movie Title That Turns Out To Be Horribly Long"
+        android:textAllCaps="true"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        android:textColor="@color/cardview_light_background"
+        android:textIsSelectable="false"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewPoster"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewPoster"
+        app:layout_constraintStart_toStartOf="@+id/imageViewPoster"
+        app:outlineColor="@color/cardview_dark_background"
+        app:outlineWidth="2px" />
+
+</android.support.constraint.ConstraintLayout>
