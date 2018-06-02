@@ -35,9 +35,15 @@ public class OutlineTextView extends android.support.v7.widget.AppCompatTextView
             //If that failed, none of this will matter, so it stays in the try-catch block
             textColor=getTextColors().getDefaultColor();
 
+            //added a default outline size of 1/30th text size, since I think that looks nice enough
+            int[] attribute = new int[] {android.R.attr.textSize};
+            TypedArray s = context.obtainStyledAttributes(attrs,attribute);
+            int textSize=s.getDimensionPixelSize(0,-1);
+            s.recycle();
+
             TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.OutlineTextView);
             outlineColor = a.getColor(R.styleable.OutlineTextView_outlineColor, Color.TRANSPARENT);
-            setOutlineStrokeWidth(a.getDimensionPixelSize(R.styleable.OutlineTextView_outlineWidth,0));
+            setOutlineStrokeWidth(a.getDimensionPixelSize(R.styleable.OutlineTextView_outlineWidth,textSize/30));
             a.recycle();
         } catch (NoSuchFieldException e) {
             //FAILURE!
