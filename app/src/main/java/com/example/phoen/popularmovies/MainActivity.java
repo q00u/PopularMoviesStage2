@@ -1,10 +1,8 @@
 package com.example.phoen.popularmovies;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        new InternetCheck(this, "com.example.phoen.popularmovies.InternetError", true).execute();
 
         //starting data
         List<Movie> mMovies = new ArrayList<Movie>();
@@ -40,9 +40,5 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         Log.i("TAG","Clicked " + adapter.getItem(position).getTitle() + " at position " + position);
     }
 
-    public boolean isOnline() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        return (null!=cm.getActiveNetworkInfo() && cm.getActiveNetworkInfo().isConnectedOrConnecting());
-    }
 }

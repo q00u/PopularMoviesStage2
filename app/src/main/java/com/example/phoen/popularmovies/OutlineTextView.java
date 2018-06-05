@@ -8,8 +8,8 @@ import android.graphics.Paint;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.view.View.BaseSavedState;
 import android.widget.TextView;
+
 import java.lang.reflect.Field;
 
 //From https://stackoverflow.com/questions/39106454/add-opaque-shadow-outline-to-android-textview
