@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+//key hiding from https://medium.com/@georgevrynios/android-studio-how-to-prevent-your-sensitive-data-like-api-keys-from-publishing-on-github-repos-fb29af482952
 //Read sensitive data from 'sensitive_data.txt' if it exists. Reviewers can add their API key here directly below
 def noKeyFound = '"NO_KEY_FOUND"'
 def theMovieDbApiKey = noKeyFound
@@ -24,6 +25,7 @@ if (noKeyFound == theMovieDbApiKey) {
 android {
     compileSdkVersion 27
     defaultConfig {
+        buildConfigField "String", "API_KEY", theMovieDbApiKey
         resValue "string", "THEMOVIEDB_API_KEY", theMovieDbApiKey
         applicationId "com.example.phoen.popularmovies"
         minSdkVersion 15
@@ -44,7 +46,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:exifinterface:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.picasso:picasso:2.71828'

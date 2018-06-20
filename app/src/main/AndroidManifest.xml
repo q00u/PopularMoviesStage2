@@ -21,8 +21,7 @@
         </activity>
         <activity
             android:name=".InternetError"
-            android:label="@string/title_activity_internet_error"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_internet_error" />
     </application>
 
 </manifest>

@@ -7,8 +7,17 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.example.phoen.popularmovies.models.Result;
+import com.example.phoen.popularmovies.models.TMDB;
+import com.example.phoen.popularmovies.rest.ApiClient;
+import com.example.phoen.popularmovies.rest.ApiInterface;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
 
@@ -21,18 +30,37 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
 
         new InternetCheck(this, "com.example.phoen.popularmovies.InternetError", true).execute();
 
-        //starting data
-        List<Movie> mMovies = new ArrayList<Movie>();
-        Uri uri = Uri.parse("android.resource://com.example.phoen.popularmovies/drawable/movie01.png");
-        mMovies.add(new Movie(1,uri.toString(),"Movie 1"));
-        mMovies.add(new Movie(2,uri.toString(),"Movie 2"));
-        mMovies.add(new Movie(3,uri.toString(),"Movie 3"));
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
-        adapter = new MyRecyclerViewAdapter(this,mMovies);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
+
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<TMDB> call = apiService.getTopRated();
+        call.enqueue(new Callback<TMDB>() {
+            @Override
+            public void onResponse(Call<TMDB> call, Response<TMDB> response) {
+                List<Result> mMovies = response.body().getResults();
+                Log.d("Main","Movies received: " + mMovies.size());
+                adapter = new MyRecyclerViewAdapter(MainActivity.this,mMovies);
+                adapter.setClickListener(MainActivity.this);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<TMDB> call, Throwable t) {
+                Log.e("Main",t.toString());
+            }
+        });
+
+//        //starting data
+//        List<Movie> mMovies = new ArrayList<Movie>();
+//        Uri uri = Uri.parse("android.resource://com.example.phoen.popularmovies/drawable/movie01.png");
+//        mMovies.add(new Movie(1,uri.toString(),"Movie 1"));
+//        mMovies.add(new Movie(2,uri.toString(),"Movie 2"));
+//        mMovies.add(new Movie(3,uri.toString(),"Movie 3"));
+
+
+
+
     }
 
     @Override

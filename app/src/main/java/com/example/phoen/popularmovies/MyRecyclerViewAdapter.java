@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.phoen.popularmovies.models.Result;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -16,9 +17,9 @@ import java.util.List;
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
     private ItemClickListener mClickListener;
     private LayoutInflater mInflater;
-    private List<Movie> mMovies;
+    private List<Result> mMovies;
 
-    MyRecyclerViewAdapter(Context context, List<Movie> data) {
+    MyRecyclerViewAdapter(Context context, List<Result> data) {
         this.mInflater=LayoutInflater.from(context);
         this.mMovies=data;
     }
@@ -29,7 +30,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     //get data at click position
-    Movie getItem(int id) {
+    Result getItem(int id) {
         return mMovies.get(id);
     }
 
@@ -67,8 +68,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Movie temp = mMovies.get(position);
-        Picasso.get().load(temp.getPosterPath())
+        Result temp = mMovies.get(position);
+        String poster = "https://image.tmdb.org/t/p/w185" + temp.getPosterPath();
+        Picasso.get().load(poster)
                 .placeholder(R.drawable.movie01)
                 .into(holder.posterImage);
         holder.movieTitle.setText(temp.getTitle());
