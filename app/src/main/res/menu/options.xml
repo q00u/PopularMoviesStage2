@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:id="@+id/options">
+
+    <item
+        android:id="@+id/popular"
+        android:icon="@drawable/trending"
+        android:title="@string/sort_popular"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/rated"
+        android:icon="@drawable/star"
+        android:title="@string/sort_highest_rated"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/titles"
+        android:icon="@drawable/titles"
+        android:title="@string/toggle_titles"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/larger"
+        android:icon="@drawable/larger"
+        android:title="@string/larger"
+        android:visible="false"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/smaller"
+        android:icon="@drawable/smaller"
+        android:title="@string/smaller"
+        android:visible="false"
+        app:showAsAction="never" />
+</menu>

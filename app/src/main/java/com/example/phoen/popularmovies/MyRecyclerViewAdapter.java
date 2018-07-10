@@ -71,8 +71,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         Result temp = mMovies.get(position);
         String poster = "https://image.tmdb.org/t/p/w185" + temp.getPosterPath();
         Picasso.get().load(poster)
+                .centerCrop()
+                .fit()
                 .placeholder(R.drawable.movie01)
+                .error(R.drawable.movie01)
                 .into(holder.posterImage);
+        holder.movieTitle.setVisibility(MainActivity.showTitles?View.VISIBLE:View.INVISIBLE);
         holder.movieTitle.setText(temp.getTitle());
     }
 }

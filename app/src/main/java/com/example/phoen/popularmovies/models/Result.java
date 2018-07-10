@@ -123,7 +123,7 @@ public class Result implements Parcelable {
         dest.writeString(releaseDate);
     }
 
-    public final Parcelable.Creator<Result> CREATOR = new Parcelable.Creator<Result>(){
+    public static final Parcelable.Creator<Result> CREATOR = new Parcelable.Creator<Result>(){
         @Override
         public Result createFromParcel(Parcel source) {
             return new Result(source);
