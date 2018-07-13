@@ -1,5 +1,7 @@
 package com.example.phoen.popularmovies.rest;
 
+import android.support.annotation.NonNull;
+
 import com.example.phoen.popularmovies.BuildConfig;
 
 import java.io.IOException;
@@ -30,7 +32,7 @@ public class ApiClient {
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(new Interceptor() {
                 @Override
-                public Response intercept(Chain chain) throws IOException {
+                public Response intercept(@NonNull Chain chain) throws IOException {
                     HttpUrl original = chain.request().url().newBuilder().addQueryParameter("api_key",apiKey).build();
                     Request request = chain.request().newBuilder().url(original).build();
                     return chain.proceed(request);

@@ -2,8 +2,8 @@ package com.example.phoen.popularmovies;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.phoen.popularmovies.models.Result;
@@ -20,8 +19,8 @@ import com.example.phoen.popularmovies.rest.ApiClient;
 import com.example.phoen.popularmovies.rest.ApiInterface;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         }
         call.enqueue(new Callback<TMDB>() {
             @Override
-            public void onResponse(Call<TMDB> call, Response<TMDB> response) {
-                List<Result> mMovies = response.body().getResults();
+            public void onResponse(@NonNull Call<TMDB> call, @NonNull Response<TMDB> response) {
+                List<Result> mMovies = Objects.requireNonNull(response.body()).getResults();
                 Log.d("Main",(sortMethod==SORT_POPULAR?"POPULAR":"TOP") + " Movies received: " + mMovies.size());
                 adapter = new MyRecyclerViewAdapter(MainActivity.this,mMovies);
                 adapter.setClickListener(MainActivity.this);
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
             }
 
             @Override
-            public void onFailure(Call<TMDB> call, Throwable t) {
+            public void onFailure(@NonNull Call<TMDB> call, @NonNull Throwable t) {
                 Log.e("Main",t.toString());
             }
         });
@@ -75,12 +74,12 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar options = (Toolbar) findViewById(R.id.options);
+        Toolbar options = findViewById(R.id.options);
         setSupportActionBar(options);
 
         new InternetCheck(this, "com.example.phoen.popularmovies.InternetError", true).execute();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
 
         callTMDB();
@@ -129,14 +128,14 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
             case R.id.popular:
                 Toast.makeText(this,"Sorting by popularity",Toast.LENGTH_SHORT).show();
                 sortMethod=SORT_POPULAR;
-                getSupportActionBar().setTitle("Popular Movies");
+                Objects.requireNonNull(getSupportActionBar()).setTitle("Popular Movies");
                 invalidateOptionsMenu();
                 callTMDB();
                 return true;
             case R.id.rated:
                 Toast.makeText(this,"Sorting by highest rated",Toast.LENGTH_SHORT).show();
                 sortMethod=SORT_RATED;
-                getSupportActionBar().setTitle("Highest Rated Movies");
+                Objects.requireNonNull(getSupportActionBar()).setTitle("Highest Rated Movies");
                 invalidateOptionsMenu();
                 callTMDB();
                 return true;

@@ -1,29 +1,23 @@
 package com.example.phoen.popularmovies;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.phoen.popularmovies.models.Result;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
+
+import java.util.Locale;
+import java.util.Objects;
 
 //https://material.io/develop/android/components/collapsing-toolbar-layout/
 //http://blog.grafixartist.com/toolbar-animation-with-android-design-support-library/
 //http://yaronvazana.com/2015/12/28/material-design-collapsing-toolbar-with-image/
 public class Details extends AppCompatActivity {
-
-    Result movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +26,7 @@ public class Details extends AppCompatActivity {
 
         Intent parentIntent = getIntent();
         if (parentIntent.hasExtra("MovieObject")) {
-            movie = parentIntent.getExtras().getParcelable("MovieObject");
+            Result movie = Objects.requireNonNull(parentIntent.getExtras()).getParcelable("MovieObject");
 
             //setTitle(movie.getTitle());
 
@@ -40,7 +34,7 @@ public class Details extends AppCompatActivity {
             originalTitle.setText(movie.getOriginalTitle());
 
             final OutlineTextView rating = findViewById(R.id.Rating);
-            rating.setText(String.format("%.1f",movie.getVoteAverage()));
+            rating.setText(String.format(Locale.US,"%.1f", movie.getVoteAverage()));
 
             final OutlineTextView releaseDate = findViewById(R.id.ReleaseDate);
             releaseDate.setText(movie.getReleaseDate());
@@ -57,13 +51,13 @@ public class Details extends AppCompatActivity {
                     .error(R.drawable.movie01)
                     .into(poster);
 
-            final Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
+            final Toolbar toolbar = findViewById(R.id.detail_toolbar);
             setSupportActionBar(toolbar);
             if (null!=getSupportActionBar()) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-            final AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.detail_appBar);
+            final AppBarLayout appBarLayout = findViewById(R.id.detail_appBar);
 
-            final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.detail_collapsing_toolbar);
+            final CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.detail_collapsing_toolbar);
             collapsingToolbar.setTitle(movie.getTitle());
 
 

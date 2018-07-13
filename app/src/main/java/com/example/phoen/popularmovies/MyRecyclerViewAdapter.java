@@ -48,8 +48,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         ViewHolder(View itemView){
             super(itemView);
-            posterImage=(ImageView)itemView.findViewById(R.id.imageViewPoster);
-            movieTitle=(OutlineTextView)itemView.findViewById(R.id.textViewTitle);
+            posterImage= itemView.findViewById(R.id.imageViewPoster);
+            movieTitle= itemView.findViewById(R.id.textViewTitle);
             itemView.setOnClickListener(this);
         }
 

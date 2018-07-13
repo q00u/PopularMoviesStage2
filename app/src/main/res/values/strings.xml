@@ -11,4 +11,8 @@
     <string name="toggle_titles">Toggle Titles</string>
     <string name="larger">Larger</string>
     <string name="smaller">Smaller</string>
+    <string name="ratingLabel">Rating:</string>
+    <string name="release_date">Release Date:</string>
+    <string name="header_content_description">Background image for movie</string>
+    <string name="details_poster_content_description">Movie poster</string>
 </resources>
