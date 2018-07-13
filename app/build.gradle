@@ -6,7 +6,7 @@ def noKeyFound = '"NO_KEY_FOUND"'
 def theMovieDbApiKey = noKeyFound
 
 def sensitiveDataFile = file('../sensitive_data.txt')
-def Properties sensitiveData = new Properties()
+Properties sensitiveData = new Properties()
 
 if (sensitiveDataFile.canRead()) {
     sensitiveData.load(new FileInputStream(sensitiveDataFile))

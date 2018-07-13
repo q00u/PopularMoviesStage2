@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/colorPrimaryDark"
-    tools:context=".Details">
+    tools:context=".activities.Details">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/detail_appBar"
@@ -86,7 +86,7 @@
             app:srcCompat="@drawable/movie01"
             android:contentDescription="@string/details_poster_content_description" />
 
-        <com.example.phoen.popularmovies.OutlineTextView
+        <com.example.phoen.popularmovies.utils.OutlineTextView
             android:id="@+id/OriginalTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
             app:layout_constraintTop_toTopOf="@+id/Poster"
             app:layout_constraintVertical_bias="0.33" />
 
-        <com.example.phoen.popularmovies.OutlineTextView
+        <com.example.phoen.popularmovies.utils.OutlineTextView
             android:id="@+id/RatingLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
             app:layout_constraintTop_toBottomOf="@+id/OriginalTitle"
             app:outlineColor="@color/cardview_dark_background" />
 
-        <com.example.phoen.popularmovies.OutlineTextView
+        <com.example.phoen.popularmovies.utils.OutlineTextView
             android:id="@+id/Rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
             app:layout_constraintStart_toEndOf="@+id/RatingLabel"
             app:layout_constraintTop_toTopOf="@+id/RatingLabel" />
 
-        <com.example.phoen.popularmovies.OutlineTextView
+        <com.example.phoen.popularmovies.utils.OutlineTextView
             android:id="@+id/ReleaseDateLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
             app:layout_constraintTop_toBottomOf="@+id/RatingLabel"
             app:outlineColor="@color/cardview_dark_background" />
 
-        <com.example.phoen.popularmovies.OutlineTextView
+        <com.example.phoen.popularmovies.utils.OutlineTextView
             android:id="@+id/ReleaseDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -152,7 +152,7 @@
             app:layout_constraintStart_toEndOf="@+id/ReleaseDateLabel"
             app:layout_constraintTop_toTopOf="@+id/ReleaseDateLabel" />
 
-        <com.example.phoen.popularmovies.OutlineTextView
+        <com.example.phoen.popularmovies.utils.OutlineTextView
             android:id="@+id/Overview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

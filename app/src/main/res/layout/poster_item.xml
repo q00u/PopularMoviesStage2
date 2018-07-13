@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/movie01"
         tools:srcCompat="@drawable/movie01" />
 
-    <com.example.phoen.popularmovies.OutlineTextView
+    <com.example.phoen.popularmovies.utils.OutlineTextView
         android:id="@+id/textViewTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

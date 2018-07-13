@@ -1,4 +1,4 @@
-package com.example.phoen.popularmovies;
+package com.example.phoen.popularmovies.activities;
 
 import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
+import com.example.phoen.popularmovies.utils.OutlineTextView;
+import com.example.phoen.popularmovies.R;
 import com.example.phoen.popularmovies.models.Result;
 import com.squareup.picasso.Picasso;
 
@@ -28,10 +30,8 @@ public class Details extends AppCompatActivity {
         if (parentIntent.hasExtra("MovieObject")) {
             Result movie = Objects.requireNonNull(parentIntent.getExtras()).getParcelable("MovieObject");
 
-            //setTitle(movie.getTitle());
-
             final OutlineTextView originalTitle = findViewById(R.id.OriginalTitle);
-            originalTitle.setText(movie.getOriginalTitle());
+            originalTitle.setText(Objects.requireNonNull(movie).getOriginalTitle());
 
             final OutlineTextView rating = findViewById(R.id.Rating);
             rating.setText(String.format(Locale.US,"%.1f", movie.getVoteAverage()));
@@ -69,6 +69,7 @@ public class Details extends AppCompatActivity {
                     .fit()
                     .into(header);
 
+            //To-do: Generate palettes based on loaded image
 //            Picasso.get().load(headerPath)
 //                    .resize(imageDimension,imageDimension)
 //                    .centerCrop()

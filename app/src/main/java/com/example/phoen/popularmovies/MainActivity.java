@@ -13,8 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.phoen.popularmovies.activities.Details;
+import com.example.phoen.popularmovies.adapters.MyRecyclerViewAdapter;
 import com.example.phoen.popularmovies.models.Result;
 import com.example.phoen.popularmovies.models.TMDB;
+import com.example.phoen.popularmovies.network.InternetCheck;
 import com.example.phoen.popularmovies.rest.ApiClient;
 import com.example.phoen.popularmovies.rest.ApiInterface;
 
@@ -39,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
 
 
     private void callTMDB() {
+        //Make sure Internet works before call
+        new InternetCheck(this, "com.example.phoen.popularmovies.activities.InternetError", true).execute();
+
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<TMDB> call;
         switch(sortMethod){
@@ -77,12 +83,13 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         Toolbar options = findViewById(R.id.options);
         setSupportActionBar(options);
 
-        new InternetCheck(this, "com.example.phoen.popularmovies.InternetError", true).execute();
-
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
 
         callTMDB();
+
+        //re-set title here in case of Internet loss mid-activity
+        Objects.requireNonNull(getSupportActionBar()).setTitle( (SORT_POPULAR==sortMethod?R.string.title_popular:R.string.title_highest_rated) );
     }
 
     @Override
@@ -126,30 +133,31 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.popular:
-                Toast.makeText(this,"Sorting by popularity",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_sort_popular,Toast.LENGTH_SHORT).show();
                 sortMethod=SORT_POPULAR;
-                Objects.requireNonNull(getSupportActionBar()).setTitle("Popular Movies");
-                invalidateOptionsMenu();
                 callTMDB();
+                Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.title_popular);
+                invalidateOptionsMenu();
                 return true;
             case R.id.rated:
-                Toast.makeText(this,"Sorting by highest rated",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_sort_highest_rated,Toast.LENGTH_SHORT).show();
                 sortMethod=SORT_RATED;
-                Objects.requireNonNull(getSupportActionBar()).setTitle("Highest Rated Movies");
-                invalidateOptionsMenu();
                 callTMDB();
+                Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.title_highest_rated);
+                invalidateOptionsMenu();
                 return true;
             case R.id.titles:
-                Toast.makeText(this,"Toggling title text",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.toast_toggle_titles,Toast.LENGTH_SHORT).show();
                 showTitles=!showTitles;
                 adapter.notifyDataSetChanged();
                 return true;
-            case R.id.larger:
-                Toast.makeText(this,"Embiggening poster size",Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.smaller:
-                Toast.makeText(this,"Shrinking poster size",Toast.LENGTH_SHORT).show();
-                return true;
+                //To-do: variable poster sizes from TMDB
+//            case R.id.larger:
+//                Toast.makeText(this,"Embiggening poster size",Toast.LENGTH_SHORT).show();
+//                return true;
+//            case R.id.smaller:
+//                Toast.makeText(this,"Shrinking poster size",Toast.LENGTH_SHORT).show();
+//                return true;
             default:
                 //Action was not recognized. Kick it upstairs for the superclass to handle.
                 return super.onOptionsItemSelected(item);

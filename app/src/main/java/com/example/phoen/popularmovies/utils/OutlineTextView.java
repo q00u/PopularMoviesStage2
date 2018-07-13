@@ -1,4 +1,4 @@
-package com.example.phoen.popularmovies;
+package com.example.phoen.popularmovies.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,8 +10,11 @@ import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import com.example.phoen.popularmovies.R;
+
 import java.lang.reflect.Field;
 
+//For readability on various backgrounds
 //From https://stackoverflow.com/questions/39106454/add-opaque-shadow-outline-to-android-textview
 public class OutlineTextView extends android.support.v7.widget.AppCompatTextView {
     private Field colorField;
@@ -41,7 +44,7 @@ public class OutlineTextView extends android.support.v7.widget.AppCompatTextView
             int textSize=s.getDimensionPixelSize(0,-1);
             s.recycle();
 
-            TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.OutlineTextView);
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.OutlineTextView);
             outlineColor = a.getColor(R.styleable.OutlineTextView_outlineColor, Color.TRANSPARENT);
             setOutlineStrokeWidth(a.getDimensionPixelSize(R.styleable.OutlineTextView_outlineWidth,textSize/30));
             a.recycle();

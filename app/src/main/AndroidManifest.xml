@@ -19,14 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Details"
+        <activity android:name=".activities.Details"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".InternetError"
+            android:name=".activities.InternetError"
             android:label="@string/title_activity_internet_error" />
     </application>
 

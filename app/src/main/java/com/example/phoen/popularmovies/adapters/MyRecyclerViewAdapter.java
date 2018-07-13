@@ -1,4 +1,4 @@
-package com.example.phoen.popularmovies;
+package com.example.phoen.popularmovies.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.phoen.popularmovies.MainActivity;
+import com.example.phoen.popularmovies.utils.OutlineTextView;
+import com.example.phoen.popularmovies.R;
 import com.example.phoen.popularmovies.models.Result;
 import com.squareup.picasso.Picasso;
 
@@ -19,7 +22,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private LayoutInflater mInflater;
     private List<Result> mMovies;
 
-    MyRecyclerViewAdapter(Context context, List<Result> data) {
+    public MyRecyclerViewAdapter(Context context, List<Result> data) {
         this.mInflater=LayoutInflater.from(context);
         this.mMovies=data;
     }
@@ -30,7 +33,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     //get data at click position
-    Result getItem(int id) {
+    public Result getItem(int id) {
         return mMovies.get(id);
     }
 
@@ -38,7 +41,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         void onItemClick(View view, int position);
     }
 
-    void setClickListener(ItemClickListener itemClickListener) {
+    public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener=itemClickListener;
     }
 

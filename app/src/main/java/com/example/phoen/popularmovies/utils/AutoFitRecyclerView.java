@@ -1,4 +1,4 @@
-package com.example.phoen.popularmovies;
+package com.example.phoen.popularmovies.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -15,4 +15,9 @@
     <string name="release_date">Release Date:</string>
     <string name="header_content_description">Background image for movie</string>
     <string name="details_poster_content_description">Movie poster</string>
+    <string name="title_popular">Popular Movies</string>
+    <string name="title_highest_rated">Highest Rated Movies</string>
+    <string name="toast_sort_popular">Sorting by popularity</string>
+    <string name="toast_sort_highest_rated">Sorting by highest rated</string>
+    <string name="toast_toggle_titles">Toggling title text</string>
 </resources>

@@ -1,8 +1,11 @@
-package com.example.phoen.popularmovies;
+package com.example.phoen.popularmovies.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.example.phoen.popularmovies.network.InternetCheck;
+import com.example.phoen.popularmovies.R;
 
 public class InternetError extends AppCompatActivity {
 

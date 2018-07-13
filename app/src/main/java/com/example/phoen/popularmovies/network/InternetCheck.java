@@ -1,7 +1,7 @@
-package com.example.phoen.popularmovies;
+package com.example.phoen.popularmovies.network;
 
 //Originally from https://github.com/Flatlyn/AndroidInternetCheck
-//Modified by Phoenix Gabriel to correct permissions, context leaks, and null pointer exceptions, (and spelling)
+//Modified to correct permissions, context leaks, and null pointer exceptions, (and spelling)
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,9 +14,6 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-
-
 
 /**
  * Created by James A. Krawczyk
@@ -51,7 +48,7 @@ public class InternetCheck extends AsyncTask<String, Void, Void> {
     private boolean isError;
 
     //Constructor
-    InternetCheck (Activity passedActivity, String whereToGo, boolean onError)
+    public InternetCheck (Activity passedActivity, String whereToGo, boolean onError)
     {
         this.callingActivity = new WeakReference<>(passedActivity);
         this.appContext = new WeakReference<>(callingActivity.get().getApplicationContext());
@@ -150,6 +147,5 @@ public class InternetCheck extends AsyncTask<String, Void, Void> {
         }
 
     }
-
 
 }
