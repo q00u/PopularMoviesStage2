@@ -20,7 +20,7 @@ public class TMDB {
     private int totalPages;
     @SerializedName("results")
     @Expose
-    private List<Result> results = null;
+    private List<TMDBResult> results = null;
 
     public int getPage() {
         return page;
@@ -46,11 +46,11 @@ public class TMDB {
         this.totalPages = totalPages;
     }
 
-    public List<Result> getResults() {
+    public List<TMDBResult> getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(List<TMDBResult> results) {
         this.results = results;
     }
 

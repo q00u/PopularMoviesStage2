@@ -4,9 +4,13 @@
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
+/.idea/caches
+/.idea/markdown-navigator
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 #my sensitive data
 sensitive_data.txt
+/.idea/assetWizardSettings.xml
+/.idea/

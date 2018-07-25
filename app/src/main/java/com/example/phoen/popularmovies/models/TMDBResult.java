@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Result implements Parcelable {
+public class TMDBResult implements Parcelable {
 
     @SerializedName("vote_count")
     @Expose
@@ -55,7 +55,7 @@ public class Result implements Parcelable {
     @Expose
     private String releaseDate;
 
-    public Result(int voteCount, int id, boolean video, float voteAverage, String title, float popularity, String posterPath, String originalLanguage, String originalTitle, List<Integer> genreIds, String backdropPath, boolean adult, String overview, String releaseDate) {
+    public TMDBResult(int voteCount, int id, boolean video, float voteAverage, String title, float popularity, String posterPath, String originalLanguage, String originalTitle, List<Integer> genreIds, String backdropPath, boolean adult, String overview, String releaseDate) {
         this.voteCount = voteCount;
         this.id = id;
         this.video = video;
@@ -72,7 +72,7 @@ public class Result implements Parcelable {
         this.releaseDate = releaseDate;
     }
 
-    public Result(int voteCount, int id, float voteAverage, String title, float popularity, String posterPath, String originalTitle, String backdropPath, String overview, String releaseDate) {
+    public TMDBResult(int voteCount, int id, float voteAverage, String title, float popularity, String posterPath, String originalTitle, String backdropPath, String overview, String releaseDate) {
         this.voteCount = voteCount;
         this.id = id;
         this.voteAverage = voteAverage;
@@ -85,13 +85,13 @@ public class Result implements Parcelable {
         this.releaseDate = releaseDate;
     }
 
-    public Result(int id, String title, String posterPath) {
+    public TMDBResult(int id, String title, String posterPath) {
         this.id = id;
         this.title = title;
         this.posterPath = posterPath;
     }
 
-    private Result(Parcel in) {
+    private TMDBResult(Parcel in) {
         voteCount = in.readInt();
         id = in.readInt();
         voteAverage=in.readFloat();
@@ -123,15 +123,15 @@ public class Result implements Parcelable {
         dest.writeString(releaseDate);
     }
 
-    public static final Parcelable.Creator<Result> CREATOR = new Parcelable.Creator<Result>(){
+    public static final Parcelable.Creator<TMDBResult> CREATOR = new Parcelable.Creator<TMDBResult>(){
         @Override
-        public Result createFromParcel(Parcel source) {
-            return new Result(source);
+        public TMDBResult createFromParcel(Parcel source) {
+            return new TMDBResult(source);
         }
 
         @Override
-        public Result[] newArray(int size) {
-            return new Result[size];
+        public TMDBResult[] newArray(int size) {
+            return new TMDBResult[size];
         }
     };
 

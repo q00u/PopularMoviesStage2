@@ -12,7 +12,7 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/rated"
-        android:icon="@drawable/star"
+        android:icon="@drawable/thumb_up"
         android:title="@string/sort_highest_rated"
         app:showAsAction="never" />
     <item

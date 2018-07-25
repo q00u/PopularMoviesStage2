@@ -1,4 +1,4 @@
-# PopularMovies - Stage 1
+# PopularMovies - Stage 2
 
 ![Screenshot](https://user-images.githubusercontent.com/892302/42668034-6334e49c-8603-11e8-8afc-88f66a441e87.gif)
 
@@ -32,9 +32,17 @@ In this part:
 2. Picasso for images
 3. Collapsing Toolbar in detail view
 4. Auto-fitting poster columns in RecyclerView
+5. Outlining the togglable title text
 
 ## Still to-do:
 
-5. Loading additional pages
-6. Choosing image sizes
-7. Generate palette based on loaded image
+1. Database for offline viewing
+2. Mark/Unmark favorites
+3. Toggle display only favorites
+4. Read reviews
+5. Play trailers
+
+## Planned extras:
+1. Loading additional pages
+2. Increase/Decrease poster image sizes
+3. Generate palette based on loaded image

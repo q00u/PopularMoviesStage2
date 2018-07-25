@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.phoen.popularmovies.network.InternetCheck;
 import com.example.phoen.popularmovies.R;
+import com.example.phoen.popularmovies.network.InternetCheck;
 
-public class InternetError extends AppCompatActivity {
+public class InternetErrorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

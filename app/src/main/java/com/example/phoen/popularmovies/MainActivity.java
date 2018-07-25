@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -13,13 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.phoen.popularmovies.activities.Details;
+import com.example.phoen.popularmovies.activities.DetailsActivity;
 import com.example.phoen.popularmovies.adapters.MyRecyclerViewAdapter;
-import com.example.phoen.popularmovies.models.Result;
 import com.example.phoen.popularmovies.models.TMDB;
+import com.example.phoen.popularmovies.models.TMDBResult;
 import com.example.phoen.popularmovies.network.InternetCheck;
 import com.example.phoen.popularmovies.rest.ApiClient;
 import com.example.phoen.popularmovies.rest.ApiInterface;
+import com.example.phoen.popularmovies.utils.AutoFitRecyclerView;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -31,7 +31,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
 
-    private RecyclerView recyclerView;
+    private AutoFitRecyclerView recyclerView;
     private MyRecyclerViewAdapter adapter;
 
     private static final int SORT_POPULAR = 0;
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         call.enqueue(new Callback<TMDB>() {
             @Override
             public void onResponse(@NonNull Call<TMDB> call, @NonNull Response<TMDB> response) {
-                List<Result> mMovies = Objects.requireNonNull(response.body()).getResults();
+                List<TMDBResult> mMovies = Objects.requireNonNull(response.body()).getResults();
                 Log.d("Main",(sortMethod==SORT_POPULAR?"POPULAR":"TOP") + " Movies received: " + mMovies.size());
                 adapter = new MyRecyclerViewAdapter(MainActivity.this,mMovies);
                 adapter.setClickListener(MainActivity.this);
@@ -94,10 +94,10 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
 
     @Override
     public void onItemClick(View view, int position) {
-        Result movie = adapter.getItem(position);
+        TMDBResult movie = adapter.getItem(position);
         Log.i("TAG","Clicked " + movie.getTitle() + " at position " + position);
 
-        Intent intent = new Intent(this,Details.class);
+        Intent intent = new Intent(this,DetailsActivity.class);
         intent.putExtra("MovieObject",movie);
 
         startActivity(intent);
@@ -151,13 +151,13 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
                 showTitles=!showTitles;
                 adapter.notifyDataSetChanged();
                 return true;
-                //To-do: variable poster sizes from TMDB
-//            case R.id.larger:
-//                Toast.makeText(this,"Embiggening poster size",Toast.LENGTH_SHORT).show();
-//                return true;
-//            case R.id.smaller:
-//                Toast.makeText(this,"Shrinking poster size",Toast.LENGTH_SHORT).show();
-//                return true;
+                //Todo: variable poster sizes from TMDB
+            case R.id.larger:
+                Toast.makeText(this,"Embiggening poster size",Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.smaller:
+                Toast.makeText(this,"Shrinking poster size",Toast.LENGTH_SHORT).show();
+                return true;
             default:
                 //Action was not recognized. Kick it upstairs for the superclass to handle.
                 return super.onOptionsItemSelected(item);

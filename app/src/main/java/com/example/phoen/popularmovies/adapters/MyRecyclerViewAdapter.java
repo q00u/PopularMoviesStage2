@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.phoen.popularmovies.MainActivity;
-import com.example.phoen.popularmovies.utils.OutlineTextView;
 import com.example.phoen.popularmovies.R;
-import com.example.phoen.popularmovies.models.Result;
+import com.example.phoen.popularmovies.models.TMDBResult;
+import com.example.phoen.popularmovies.utils.OutlineTextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -20,9 +20,9 @@ import java.util.List;
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
     private ItemClickListener mClickListener;
     private LayoutInflater mInflater;
-    private List<Result> mMovies;
+    private List<TMDBResult> mMovies;
 
-    public MyRecyclerViewAdapter(Context context, List<Result> data) {
+    public MyRecyclerViewAdapter(Context context, List<TMDBResult> data) {
         this.mInflater=LayoutInflater.from(context);
         this.mMovies=data;
     }
@@ -33,7 +33,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     //get data at click position
-    public Result getItem(int id) {
+    public TMDBResult getItem(int id) {
         return mMovies.get(id);
     }
 
@@ -71,7 +71,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Result temp = mMovies.get(position);
+        TMDBResult temp = mMovies.get(position);
         String poster = "https://image.tmdb.org/t/p/w185" + temp.getPosterPath();
         Picasso.get().load(poster)
                 .centerCrop()
