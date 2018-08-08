@@ -20,4 +20,14 @@
     <string name="toast_sort_popular">Sorting by popularity</string>
     <string name="toast_sort_highest_rated">Sorting by highest rated</string>
     <string name="toast_toggle_titles">Toggling title text</string>
+    <string name="ReviewsCount">No Reviews</string>
+    <plurals name="numberOfReviews">
+        <item quantity="one">%d Review</item>
+        <item quantity="other">%d Reviews</item>
+    </plurals>
+    <plurals name="numberOfVideos">
+        <item quantity="one">%d Video</item>
+        <item quantity="other">%d Videos</item>
+    </plurals>
+    <string name="video_component_tag">video_container</string>
 </resources>
